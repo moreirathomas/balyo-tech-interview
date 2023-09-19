@@ -1,0 +1,98 @@
+import { test, expect, describe } from "bun:test";
+import { Player } from "./index";
+
+describe("use Super Mushroom", () => {
+  test("as Small Mario", () => {
+    const player = new Player();
+
+    player.use("SuperMushroom");
+    expect(player.state).toBe("SuperMario");
+    expect(player.lifes).toBe(3);
+  });
+
+  test("as Super Mario", () => {
+    const player = new Player();
+    player.state = "SuperMario";
+
+    player.use("SuperMushroom");
+    expect(player.state).toBe("SuperMario");
+    expect(player.lifes).toBe(4);
+  });
+
+  test("as Fire Mario", () => {
+    const player = new Player();
+    player.state = "FireMario";
+
+    player.use("SuperMushroom");
+    expect(player.state).toBe("FireMario");
+    expect(player.lifes).toBe(4);
+  });
+});
+
+describe("use Fire Flower", () => {
+  test("as Small Mario", () => {
+    const player = new Player();
+
+    player.use("FireFlower");
+    expect(player.state).toBe("FireMario");
+    expect(player.lifes).toBe(3);
+  });
+
+  test("as Super Mario", () => {
+    const player = new Player();
+    player.state = "SuperMario";
+
+    player.use("FireFlower");
+    expect(player.state).toBe("FireMario");
+    expect(player.lifes).toBe(3);
+  });
+
+  test("as Fire Mario", () => {
+    const player = new Player();
+    player.state = "FireMario";
+
+    player.use("FireFlower");
+    expect(player.state).toBe("FireMario");
+    expect(player.lifes).toBe(3);
+  });
+});
+
+describe("get hit", () => {
+  test("as Small Mario", () => {
+    const player = new Player();
+
+    player.hit();
+    expect(player.state).toBe("SmallMario");
+    expect(player.lifes).toBe(2);
+  });
+
+  test("as Super Mario", () => {
+    const player = new Player();
+    player.state = "SuperMario";
+
+    player.hit();
+    expect(player.state).toBe("SmallMario");
+    expect(player.lifes).toBe(3);
+  });
+
+  test("as Fire Mario", () => {
+    const player = new Player();
+    player.state = "FireMario";
+
+    player.hit();
+    expect(player.state).toBe("SmallMario");
+    expect(player.lifes).toBe(3);
+  });
+});
+
+describe("Player", () => {
+  test("starts as Small Mario", () => {
+    const player = new Player();
+    expect(player.state).toBe("SmallMario");
+  });
+
+  test("starts with 3 lives", () => {
+    const player = new Player();
+    expect(player.lifes).toBe(3);
+  });
+});
