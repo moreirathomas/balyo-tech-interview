@@ -27,6 +27,15 @@ describe("use Super Mushroom", () => {
     expect(player.state).toBe("FireMario");
     expect(player.lifes).toBe(4);
   });
+
+  test("as Mini Mario", () => {
+    const player = new Player();
+    player.state = "MiniMario";
+
+    player.use("SuperMushroom");
+    expect(player.state).toBe("SuperMario");
+    expect(player.lifes).toBe(3);
+  });
 });
 
 describe("use Fire Flower", () => {
@@ -53,6 +62,52 @@ describe("use Fire Flower", () => {
 
     player.use("FireFlower");
     expect(player.state).toBe("FireMario");
+    expect(player.lifes).toBe(3);
+  });
+
+  test("as Mini Mario", () => {
+    const player = new Player();
+    player.state = "MiniMario";
+
+    player.use("FireFlower");
+    expect(player.state).toBe("FireMario");
+    expect(player.lifes).toBe(3);
+  });
+});
+
+describe("use Mini Mushroom", () => {
+  test("as Small Mario", () => {
+    const player = new Player();
+
+    player.use("MiniMushroom");
+    expect(player.state).toBe("MiniMario");
+    expect(player.lifes).toBe(3);
+  });
+
+  test("as Super Mario", () => {
+    const player = new Player();
+    player.state = "SuperMario";
+
+    player.use("MiniMushroom");
+    expect(player.state).toBe("MiniMario");
+    expect(player.lifes).toBe(3);
+  });
+
+  test("as Fire Mario", () => {
+    const player = new Player();
+    player.state = "FireMario";
+
+    player.use("MiniMushroom");
+    expect(player.state).toBe("MiniMario");
+    expect(player.lifes).toBe(3);
+  });
+
+  test("as Mini Mario", () => {
+    const player = new Player();
+    player.state = "MiniMario";
+
+    player.use("MiniMushroom");
+    expect(player.state).toBe("MiniMario");
     expect(player.lifes).toBe(3);
   });
 });
@@ -82,6 +137,15 @@ describe("get hit", () => {
     player.hit();
     expect(player.state).toBe("SmallMario");
     expect(player.lifes).toBe(3);
+  });
+
+  test("as Mini Mario", () => {
+    const player = new Player();
+    player.state = "MiniMario";
+
+    player.hit();
+    expect(player.state).toBe("SmallMario");
+    expect(player.lifes).toBe(2);
   });
 });
 
