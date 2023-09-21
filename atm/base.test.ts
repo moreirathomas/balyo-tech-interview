@@ -3,7 +3,7 @@ import { withdraw } from "./base";
 import { ATM, Cash } from "./atm";
 import { fullATM, cash, emptyATM } from "./test/stub";
 
-describe("Base case", () => {
+describe("Base case, prefer higher bills", () => {
   const atm = fullATM();
 
   test.each<[number, Cash]>([

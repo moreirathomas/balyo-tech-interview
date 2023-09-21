@@ -3,7 +3,7 @@ import { withdraw } from "./preference";
 import { ATM, Bill, Cash } from "./atm";
 import { cash, emptyATM, fullATM } from "./test/stub";
 
-describe("Prefer given bills", () => {
+describe("Prefer requested bills", () => {
   const atm = fullATM();
 
   test.each<[number, Bill, Cash]>([
