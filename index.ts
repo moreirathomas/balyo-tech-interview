@@ -1,6 +1,6 @@
-type State = "SmallMario" | "SuperMario" | "FireMario";
+type State = "SmallMario" | "SuperMario" | "FireMario" | "MiniMario";
 
-type PowerUp = "SuperMushroom" | "FireFlower";
+type PowerUp = "SuperMushroom" | "FireFlower" | "MiniMushroom";
 
 export class Player {
   state: State;
@@ -17,9 +17,14 @@ export class Player {
     const transitions: Transition[] = [
       ["SmallMario", "SuperMushroom", "SuperMario"],
       ["SmallMario", "FireFlower", "FireMario"],
-      ["SuperMario", "FireFlower", "FireMario"],
+      ["SmallMario", "MiniMushroom", "MiniMario"],
       ["SuperMario", "SuperMushroom", "SuperMario", 1],
+      ["SuperMario", "FireFlower", "FireMario"],
+      ["SuperMario", "MiniMushroom", "MiniMario"],
       ["FireMario", "SuperMushroom", "FireMario", 1],
+      ["FireMario", "MiniMushroom", "MiniMario"],
+      ["MiniMario", "SuperMushroom", "SuperMario"],
+      ["MiniMario", "FireFlower", "FireMario"],
     ];
 
     const transition = transitions.find(
@@ -39,6 +44,7 @@ export class Player {
       ["SmallMario", "SmallMario", -1],
       ["SuperMario", "SmallMario"],
       ["FireMario", "SmallMario"],
+      ["MiniMario", "SmallMario", -1],
     ];
 
     const transition = transitions.find(([state]) => state === this.state);
