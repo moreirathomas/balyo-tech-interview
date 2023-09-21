@@ -1,5 +1,5 @@
 import { test, expect, describe } from "bun:test";
-import { Player } from "./index";
+import { Player } from ".";
 
 describe("use Super Mushroom", () => {
   test("as Small Mario", () => {
