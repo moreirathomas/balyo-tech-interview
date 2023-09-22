@@ -1,4 +1,4 @@
-const bills = [5, 10, 20, 50, 100] as const;
+export const bills = [5, 10, 20, 50, 100] as const;
 
 export type Bill = (typeof bills)[number];
 
