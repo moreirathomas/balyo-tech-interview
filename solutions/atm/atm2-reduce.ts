@@ -1,5 +1,5 @@
 import { ATM, Bill, Cash } from "../../atm/types";
-import { withdraw as _withdraw, maxAcquirable, sum } from "./atm1";
+import { withdraw as _withdraw, maxAcquirable, sum } from "./atm1-reduce";
 
 export function withdraw(
   atm: ATM,
