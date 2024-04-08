@@ -6,10 +6,11 @@ To install dependencies:
 bun install
 ```
 
-To run:
+To run the tests, go to the appropriate folder (atm for example) and run the test:
 
 ```bash
-bun run index.ts
+cd [folder]
+bun test
 ```
 
-This project was created using `bun init` in bun v1.0.1. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+For more information about an exercise, please refer to the `README.md` file of the exercise folder.
