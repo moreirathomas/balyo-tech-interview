@@ -9,6 +9,7 @@ bun install
 To run the tests, go to the appropriate folder (atm for example) and run the test:
 
 ```bash
+cd [folder]
 bun test
 ```
 
