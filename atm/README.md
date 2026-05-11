@@ -28,9 +28,9 @@ Once the base specifications are done, we will add the following features:
 Test cases are provided in `atm*.test.ts` files. You can run them with the following commands:
 
 ```bash
-bun test ./atm1.test.ts # Iteration 1
+bun test atm/atm1.test.ts # Iteration 1
 
-bun test ./atm2.test.ts # Iteration 2
+bun test atm/atm2.test.ts # Iteration 2
 ```
 
 Pass `--bail` flag to stop on first failure (useful for early debugging).

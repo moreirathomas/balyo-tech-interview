@@ -1,16 +1,17 @@
 # balyo-tech-interview
 
+To install [Bun](https://bun.com) runtime, please follow the instructions on the official website.
+
 To install dependencies:
 
 ```bash
 bun install
 ```
 
-To run the tests, go to the appropriate folder (atm for example) and run the test:
+To run the tests for a specific exercise, use the following command:
 
 ```bash
-cd [folder]
-bun test
+bun test <exercise-directory>
 ```
 
-For more information about an exercise, please refer to the `README.md` file of the exercise folder.
+For more information about an exercise, please refer to the `README.md` file of the exercise's directory.
