@@ -1,4 +1,4 @@
-import { ATM, Cash } from "./types";
+import { Atm, Cash } from "./types";
 
 export const cash = (v?: Partial<Cash>): Cash => ({
   5: 0,
@@ -9,7 +9,7 @@ export const cash = (v?: Partial<Cash>): Cash => ({
   ...v,
 });
 
-export const fullATM = (v?: Partial<Cash>): ATM => ({
+export const fullAtm = (v?: Partial<Cash>): Atm => ({
   available: {
     5: Infinity,
     10: Infinity,
@@ -20,6 +20,6 @@ export const fullATM = (v?: Partial<Cash>): ATM => ({
   },
 });
 
-export const emptyATM = (v?: Partial<Cash>): ATM => ({
+export const emptyAtm = (v?: Partial<Cash>): Atm => ({
   available: { ...cash({}), ...v },
 });

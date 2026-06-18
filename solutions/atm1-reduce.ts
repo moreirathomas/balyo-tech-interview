@@ -1,6 +1,8 @@
-import { ATM, Bill, bills, Cash } from "../../atm/types";
+import { Atm, Bill, Cash } from "../src/types";
 
-export function withdraw(atm: ATM, amount: number): Cash | null {
+const bills = [100, 50, 20, 10, 5] as const;
+
+export function withdraw(atm: Atm, amount: number): Cash | null {
   const zero: Cash = {
     5: 0,
     10: 0,
@@ -9,20 +11,20 @@ export function withdraw(atm: ATM, amount: number): Cash | null {
     100: 0,
   };
 
-  const [cash] = bills.toReversed().reduce(
+  const [cash] = bills.reduce(
     ([cash, amount], bill) => {
-      let remainder = amount % bill;
-      let count = (amount - remainder) / bill;
+      let rest = amount % bill;
+      let toDispense = (amount - rest) / bill;
 
-      if (atm.available[bill] < count) {
+      if (atm.available[bill] < toDispense) {
         const max = maxAcquirable(atm, bill, amount);
-        remainder = amount - max;
-        count = (amount - remainder) / bill;
+        rest = amount - max;
+        toDispense = (amount - rest) / bill;
       }
 
-      cash[bill] = count;
+      cash[bill] = toDispense;
 
-      return [cash, remainder];
+      return [cash, rest];
     },
     [zero, amount] as [Cash, number],
   );
@@ -34,7 +36,7 @@ export function withdraw(atm: ATM, amount: number): Cash | null {
   return cash;
 }
 
-export function maxAcquirable(atm: ATM, bill: Bill, amount: number): number {
+export function maxAcquirable(atm: Atm, bill: Bill, amount: number): number {
   const remainder = amount % bill;
   return Math.min(atm.available[bill] * bill, amount - remainder);
 }

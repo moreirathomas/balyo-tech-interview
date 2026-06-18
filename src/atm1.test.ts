@@ -1,10 +1,10 @@
 import { describe, expect, test } from "bun:test";
 import { withdraw } from "./atm1";
-import { cash, emptyATM, fullATM } from "./testutils";
-import { ATM, Cash } from "./types";
+import { cash, emptyAtm, fullAtm } from "./testutils";
+import { Atm, Cash } from "./types";
 
 describe("Base case, prefer higher bills", () => {
-  const atm = fullATM();
+  const atm = fullAtm();
 
   test.each<[number, Cash]>([
     [5, cash({ 5: 1 })],
@@ -53,11 +53,11 @@ describe("Base case, prefer higher bills", () => {
 });
 
 describe("ATM not full, compose with smaller bills", () => {
-  test.each<[number, ATM, Cash]>([
-    [50, fullATM({ 50: 0 }), cash({ 20: 2, 10: 1 })],
-    [50, fullATM({ 50: 0, 20: 0 }), cash({ 10: 5 })],
-    [100, fullATM({ 100: 0 }), cash({ 50: 2 })],
-    [100, fullATM({ 100: 0, 50: 0, 20: 1 }), cash({ 20: 1, 10: 8 })],
+  test.each<[number, Atm, Cash]>([
+    [50, fullAtm({ 50: 0 }), cash({ 20: 2, 10: 1 })],
+    [50, fullAtm({ 50: 0, 20: 0 }), cash({ 10: 5 })],
+    [100, fullAtm({ 100: 0 }), cash({ 50: 2 })],
+    [100, fullAtm({ 100: 0, 50: 0, 20: 1 }), cash({ 20: 1, 10: 8 })],
   ])("withdraw %i", (amount, atm, expected) => {
     const actual = withdraw(atm, amount);
     expect(actual).toEqual(expected);
@@ -65,9 +65,9 @@ describe("ATM not full, compose with smaller bills", () => {
 });
 
 describe("Not enough cash in ATM", () => {
-  test.each<[number, ATM]>([
-    [50, emptyATM({ 20: 2 })],
-    [100, emptyATM({ 50: 1, 20: 1 })],
+  test.each<[number, Atm]>([
+    [50, emptyAtm({ 20: 2 })],
+    [100, emptyAtm({ 50: 1, 20: 1 })],
   ])("withdraw %i", (amount, atm) => {
     const actual = withdraw(atm, amount);
     expect(actual).toEqual(null);

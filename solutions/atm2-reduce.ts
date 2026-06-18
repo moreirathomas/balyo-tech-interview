@@ -1,8 +1,8 @@
-import { ATM, Bill, Cash } from "../../atm/types";
+import { Atm, Bill, Cash } from "../src/types";
 import { withdraw as _withdraw, maxAcquirable, sum } from "./atm1-reduce";
 
 export function withdraw(
-  atm: ATM,
+  atm: Atm,
   amount: number,
   preference?: Bill,
 ): Cash | null {
@@ -24,34 +24,34 @@ export function withdraw(
     100: 0,
   };
 
-  let remainder = amount % preference;
-  let count = (amount - remainder) / preference;
+  let rest = amount % preference;
+  let toDispense = (amount - rest) / preference;
 
   // Best case scenario
-  if (remainder === 0 && atm.available[preference] >= count) {
+  if (rest === 0 && atm.available[preference] >= toDispense) {
     return {
       ...zero,
       [preference]: amount / preference,
     };
   }
 
-  const max = maxAcquirable(atm, preference, amount);
-  remainder = amount - max;
-  count = (amount - remainder) / preference;
+  const dispensed = maxAcquirable(atm, preference, amount);
+  rest = amount - dispensed;
+  toDispense = (amount - rest) / preference;
 
   const atmInUse = {
     available: {
       ...atm.available,
-      [preference]: atm.available[preference] - count,
+      [preference]: atm.available[preference] - toDispense,
     },
   };
 
-  const otherBills = _withdraw(atmInUse, remainder);
+  const otherBills = _withdraw(atmInUse, rest);
   if (otherBills === null) {
     return null;
   }
 
-  const cash = { ...otherBills, [preference]: count };
+  const cash = { ...otherBills, [preference]: toDispense };
 
   if (sum(cash) !== amount) {
     return null;
