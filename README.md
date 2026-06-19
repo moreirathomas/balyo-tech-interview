@@ -61,7 +61,7 @@ The function must respect the following specifications:
 
 </details>
 
-# Exercise 2
+## Exercise 2
 
 You must add new features to the `withdraw` function (found in
 [`src/atm2.ts`](./src/atm2.ts)):
